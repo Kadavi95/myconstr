@@ -1,11 +1,10 @@
 import React from 'react';
 
-export function ProFeature(FeatureComponent) {
+export function ProFeature(props) {
     return function (props){
 
         if (props.pro) {
-            let {pro, ...childProps} = props;
-            return <FeatureComponent {...childProps}></FeatureComponent>
+            return props.render()
         } else
         return (
             <h5 className="bg-warning text-white text-center">

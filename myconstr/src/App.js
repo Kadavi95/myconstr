@@ -4,10 +4,11 @@ import React, { Component } from "react";
 // import { ThemeSelector } from "./ThemeSelector.js";
 import { GeneralList } from "./GeneralList";
 import { SortedList } from "./SortedList";
-// import { ProFeature } from "./ProFeature";
-import { ProControler} from "./ProControler";
+import { ProFeature } from "./ProFeature";
+// import { ProControler} from "./ProControler";
+// import { LogToConsole } from "./LogToConsole";
 
-const ProList = ProControler(SortedList);
+// const ProList = ProControler(LogToConsole(SortedList, "Sorted",true, true,true));
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +17,7 @@ export default class App extends Component {
       // reverseChildren: false,
       names: ["Zosia", "Kuba", "Ala", "Ola", "Jaś"],
       cities: ["London", "Paris", "Berlin", "Zurich", "Rome"],
-      // proMode: false,
+      proMode: false,
     };
   }
   toggleProMode = () => {
@@ -72,13 +73,16 @@ export default class App extends Component {
             </div>
           </div>
           <div className="row">
-            <div className="col-3">
+            <div className="col-6">
               <GeneralList
                 list={this.state.names}
                 theme="primary"
               ></GeneralList>
             </div>
-            <div className="col-3">
+            <div className="col-6">
+              <ProFeature pro={this.state.proMode} render={() => <SortedList list={this.state.names}></SortedList>}></ProFeature>
+            </div>
+            {/* <div className="col-3">
               <ProList
                 list={this.state.names}
               ></ProList>
@@ -93,7 +97,7 @@ export default class App extends Component {
               <ProList
                 list={this.state.cities}
               ></ProList>
-            </div>
+            </div> */}
           </div>
         </div>
       </>
